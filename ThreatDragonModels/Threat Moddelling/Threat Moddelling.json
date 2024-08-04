@@ -1,26 +1,792 @@
 {
-  "version": "2.2.0",
   "summary": {
-    "title": "Threat Moddelling",
-    "owner": "",
-    "description": "The system under study is a web-based application designed to register dogs in order to get their identification tags, as well as the management and traceability of dogs. Owners can register their dogs, and receive or renew their unique tags delivered by the Council. Dogs can be declared lost or found, and owners can terminate a registration before its expiration date.",
-    "id": 0
+    "title": "Dog Registration System",
+    "owner": "Group 13",
+    "description": "The system under study is a web-based application designed to register dogs in order to get their identification tags, as well as the management and traceability of dogs. Owners can register their dogs, and receive or renew their unique tags delivered by the Council. Dogs can be declared lost or found, and owners can terminate a registration before its expiration date. Figure 1 depicts a simplified domain model of this application.\nFigure 1: Simplified domain model for the dog registration system\n1.1 Functional features\n1.1.1 Register a dog\nOwners can register their dogs on the Council’s application webpage. They use their personal details, i.e. pronoun, first and last name, email address, and physical address where the dog will be located and where the tag needs to be shipped to (same address for both). When registering the dog, they submit its name, and breed. Upon completion of the registration process, they receive a unique registration number, and an expiry date for the registration. An\n SENG406 - Assignment 2 - Threat modelling 1 / 4\n1.\n2.\n2.1\naPDFreportpresentingyourthreatmodellingandanalysisoftheabovesystem.YoumustuseOWASPThreatDragon to guide your reflection. However, the generated report from that tool does not contain all information that\nwe expect, so you will have to append the content of the generated report into a complete PDF report.\nthe JSON model exported from Threat Dragon.\nExpected content of report\n1.2 Declare a lost dog\n invoice is generated in PDF and sent by email to the owner, that the owner will have to pay by bank transfer, indicating the registration number in reference. A tag with a unique ID is created. The tag ID is an 8 digit unique number such that at any time, there are no dogs with the same tag ID. The tag will be sent to the address indicated by the owner.\n1.1.2 Renew a registration\nBefore the end of a registration (typically after a year since the registration), owners have to renew a dog’s registra- tion. To this end, they have to introduce the latest tag ID, and the address to deliver the new tag to. A new invoice will be created and sent to the email address matching that tag. The new tag, with a new ID, will be associated to the dog previously associated to the tag to renew.\n1.1.3 Terminate a registration\nOwners can terminate a dog’s registration in the event of moving to a new city, the dog being passed to a new owner, or the dog’s death. To terminate a dog’s registration, the owner needs to introduce their email address, the tag ID, and the dog’s name. A confirmation email will be sent to the owners to confirm that the dog is not registered anymore, and that the tag can be destroyed. The email also contains a link to the registration process on the Council’s application in case the dog’s registration was terminated by mistake.\n1.2 Declare a lost dog\nOwners can report their dog as lost. To this end, they need to encode their email address used to register the dog, and the dog’s name. The Council system will send a confirmation email of the dog’s lost status, with the last known tag ID, also displayed on the confirmation webpage.\n1.3 Report of found dog\nMembers of the public can report found dogs that seem to be lost. For this, they have to introduce the dog’s tag ID, and a physical address where the dog is currently located, so dog services can come and pick it up. The Council will then contact the owner on their email address, matching the tag ID.\n1.4 Additional constraints and non-functional requirements\nHere is a list of additional constrains for this system:\n• The system must be available publicly on a website from both desktop and mobile devices. • The full software application is deployed on premise, controlled by the Council’s staff.\n• Council staff maintain the infrastructure (hardware) that runs the software application."
   },
   "detail": {
     "contributors": [],
     "diagrams": [
       {
-        "id": 0,
-        "title": "test",
-        "diagramType": "STRIDE",
-        "placeholder": "New STRIDE diagram description",
+        "title": "Threat Model",
         "thumbnail": "./public/content/images/thumbnail.stride.jpg",
-        "version": "2.2.0",
-        "cells": []
+        "diagramType": "STRIDE",
+        "id": 0,
+        "$$hashKey": "object:149",
+        "diagramJson": {
+          "cells": [
+            {
+              "type": "tm.Actor",
+              "size": {
+                "width": 160,
+                "height": 80
+              },
+              "position": {
+                "x": 36,
+                "y": 30
+              },
+              "angle": 0,
+              "id": "c6a80e75-b462-4269-b296-95a35c8a49a4",
+              "z": 1,
+              "hasOpenThreats": false,
+              "attrs": {
+                ".element-shape": {
+                  "class": "element-shape hasNoOpenThreats isInScope"
+                },
+                "text": {
+                  "text": "Dog Owner"
+                },
+                ".element-text": {
+                  "class": "element-text hasNoOpenThreats isInScope"
+                }
+              }
+            },
+            {
+              "type": "tm.Process",
+              "size": {
+                "width": 100,
+                "height": 100
+              },
+              "position": {
+                "x": 60,
+                "y": 255
+              },
+              "angle": 0,
+              "id": "f0b5788b-68cf-4393-89ff-b06483e4f64e",
+              "z": 3,
+              "hasOpenThreats": false,
+              "attrs": {
+                ".element-shape": {
+                  "class": "element-shape hasNoOpenThreats isInScope"
+                },
+                "text": {
+                  "text": "Register a dog"
+                },
+                ".element-text": {
+                  "class": "element-text hasNoOpenThreats isInScope"
+                }
+              }
+            },
+            {
+              "type": "tm.Flow",
+              "size": {
+                "width": 10,
+                "height": 10
+              },
+              "smooth": true,
+              "source": {
+                "x": 155,
+                "y": 260
+              },
+              "target": {
+                "id": "c6a80e75-b462-4269-b296-95a35c8a49a4"
+              },
+              "vertices": [],
+              "id": "d7ddfcd7-3bb7-42df-8d65-8ac51ef074c5",
+              "labels": [
+                {
+                  "position": {
+                    "distance": 0.42626256509152827,
+                    "offset": 62.0249382753364
+                  },
+                  "attrs": {
+                    "text": {
+                      "text": "Registration Details",
+                      "font-weight": "400",
+                      "font-size": "small"
+                    }
+                  }
+                }
+              ],
+              "z": 4,
+              "hasOpenThreats": false,
+              "description": "Registration details include:\n- Unique registration number\n- Expiry date",
+              "attrs": {
+                ".marker-target": {
+                  "class": "marker-target hasNoOpenThreats isInScope"
+                },
+                ".connection": {
+                  "class": "connection hasNoOpenThreats isInScope"
+                }
+              }
+            },
+            {
+              "type": "tm.Process",
+              "size": {
+                "width": 100,
+                "height": 100
+              },
+              "position": {
+                "x": 281,
+                "y": 127
+              },
+              "angle": 0,
+              "id": "469f4ccf-3fb5-477f-901f-54bd475d62b2",
+              "z": 5,
+              "hasOpenThreats": false,
+              "description": "Process to generate an invoice for the dog owner as a pdf upon registration.",
+              "attrs": {
+                ".element-shape": {
+                  "class": "element-shape hasNoOpenThreats isInScope"
+                },
+                "text": {
+                  "text": "Invoice\nGeneration"
+                },
+                ".element-text": {
+                  "class": "element-text hasNoOpenThreats isInScope"
+                }
+              }
+            },
+            {
+              "type": "tm.Flow",
+              "size": {
+                "width": 10,
+                "height": 10
+              },
+              "smooth": true,
+              "source": {
+                "id": "f0b5788b-68cf-4393-89ff-b06483e4f64e"
+              },
+              "target": {
+                "id": "469f4ccf-3fb5-477f-901f-54bd475d62b2"
+              },
+              "vertices": [],
+              "id": "703c7e88-fbd9-4692-928b-3ebd16517320",
+              "labels": [
+                {
+                  "position": 0.5,
+                  "attrs": {
+                    "text": {
+                      "text": "Owner Data",
+                      "font-weight": "400",
+                      "font-size": "small"
+                    }
+                  }
+                }
+              ],
+              "z": 6,
+              "hasOpenThreats": false,
+              "description": "Owner data includes:\n- First name\n- Last name\n- Email address",
+              "attrs": {
+                ".marker-target": {
+                  "class": "marker-target hasNoOpenThreats isInScope"
+                },
+                ".connection": {
+                  "class": "connection hasNoOpenThreats isInScope"
+                }
+              }
+            },
+            {
+              "type": "tm.Flow",
+              "size": {
+                "width": 10,
+                "height": 10
+              },
+              "smooth": true,
+              "source": {
+                "id": "469f4ccf-3fb5-477f-901f-54bd475d62b2"
+              },
+              "target": {
+                "id": "c6a80e75-b462-4269-b296-95a35c8a49a4"
+              },
+              "vertices": [],
+              "id": "63bedc3b-5ec7-4a44-9dca-15908e0703a9",
+              "labels": [
+                {
+                  "position": {
+                    "distance": 0.5307598304365477,
+                    "offset": -1.676339157570621
+                  },
+                  "attrs": {
+                    "text": {
+                      "text": "Invoice Data",
+                      "font-weight": "400",
+                      "font-size": "small"
+                    }
+                  }
+                }
+              ],
+              "z": 7,
+              "hasOpenThreats": false,
+              "description": "Invoice data includes:\n- Amount payable\n- Bank information\n- Registration number",
+              "attrs": {
+                ".marker-target": {
+                  "class": "marker-target hasNoOpenThreats isInScope"
+                },
+                ".connection": {
+                  "class": "connection hasNoOpenThreats isInScope"
+                }
+              }
+            },
+            {
+              "type": "tm.Process",
+              "size": {
+                "width": 100,
+                "height": 100
+              },
+              "position": {
+                "x": 272,
+                "y": 324
+              },
+              "angle": 0,
+              "id": "60a88a0a-d05a-4384-b12a-0b6f134c6ebf",
+              "z": 8,
+              "hasOpenThreats": false,
+              "description": "Tag creator creates and updates a unique 8-digit number such that any time, there are no dogs with the same tag ID.",
+              "attrs": {
+                ".element-shape": {
+                  "class": "element-shape hasNoOpenThreats isInScope"
+                },
+                "text": {
+                  "text": "Tag Creator"
+                },
+                ".element-text": {
+                  "class": "element-text hasNoOpenThreats isInScope"
+                }
+              }
+            },
+            {
+              "type": "tm.Store",
+              "size": {
+                "width": 160,
+                "height": 80
+              },
+              "position": {
+                "x": 245,
+                "y": 504
+              },
+              "angle": 0,
+              "id": "bbe7160e-71d9-47f4-b8ae-48062cf589a0",
+              "z": 9,
+              "hasOpenThreats": false,
+              "description": "This database includes all dog tag data",
+              "attrs": {
+                ".element-shape": {
+                  "class": "element-shape hasNoOpenThreats isInScope"
+                },
+                "text": {
+                  "text": "Dog Tag Datastore"
+                },
+                ".element-text": {
+                  "class": "element-text hasNoOpenThreats isInScope"
+                }
+              }
+            },
+            {
+              "type": "tm.Store",
+              "size": {
+                "width": 160,
+                "height": 80
+              },
+              "position": {
+                "x": 20,
+                "y": 475
+              },
+              "angle": 0,
+              "id": "88a26d35-601c-4434-a521-264cf18f48b9",
+              "z": 10,
+              "hasOpenThreats": false,
+              "description": "This database contains all user data.",
+              "attrs": {
+                ".element-shape": {
+                  "class": "element-shape hasNoOpenThreats isInScope"
+                },
+                "text": {
+                  "text": "User Datastore"
+                },
+                ".element-text": {
+                  "class": "element-text hasNoOpenThreats isInScope"
+                }
+              }
+            },
+            {
+              "type": "tm.Flow",
+              "size": {
+                "width": 10,
+                "height": 10
+              },
+              "smooth": true,
+              "source": {
+                "id": "f0b5788b-68cf-4393-89ff-b06483e4f64e"
+              },
+              "target": {
+                "id": "88a26d35-601c-4434-a521-264cf18f48b9"
+              },
+              "vertices": [],
+              "id": "cbead89a-d04d-4c78-87ac-08a5119056a2",
+              "labels": [
+                {
+                  "position": 0.5,
+                  "attrs": {
+                    "text": {
+                      "text": "User Data",
+                      "font-weight": "400",
+                      "font-size": "small"
+                    }
+                  }
+                }
+              ],
+              "z": 11,
+              "hasOpenThreats": false,
+              "description": "User data includes:\n- Pronouns\n- First name\n- Last name\n- Email address\n- Physical address (Shipping)",
+              "attrs": {
+                ".marker-target": {
+                  "class": "marker-target hasNoOpenThreats isInScope"
+                },
+                ".connection": {
+                  "class": "connection hasNoOpenThreats isInScope"
+                }
+              }
+            },
+            {
+              "type": "tm.Flow",
+              "size": {
+                "width": 10,
+                "height": 10
+              },
+              "smooth": true,
+              "source": {
+                "id": "c6a80e75-b462-4269-b296-95a35c8a49a4"
+              },
+              "target": {
+                "id": "f0b5788b-68cf-4393-89ff-b06483e4f64e"
+              },
+              "vertices": [
+                {
+                  "x": 31,
+                  "y": 213
+                }
+              ],
+              "id": "68f3c6d5-bf3f-4ec0-83cb-ac27c300b7ff",
+              "labels": [
+                {
+                  "position": 0.5,
+                  "attrs": {
+                    "text": {
+                      "text": "Registration Data",
+                      "font-weight": "400",
+                      "font-size": "small"
+                    }
+                  }
+                }
+              ],
+              "z": 12,
+              "hasOpenThreats": false,
+              "description": "Registration data includes:\n- Pronouns\n- First name\n- Last name\n- Email address\n- Physical address (Shipping)\n- Dog name\n- Dog breed",
+              "attrs": {
+                ".marker-target": {
+                  "class": "marker-target hasNoOpenThreats isInScope"
+                },
+                ".connection": {
+                  "class": "connection hasNoOpenThreats isInScope"
+                }
+              }
+            },
+            {
+              "type": "tm.Flow",
+              "size": {
+                "width": 10,
+                "height": 10
+              },
+              "smooth": true,
+              "source": {
+                "id": "f0b5788b-68cf-4393-89ff-b06483e4f64e"
+              },
+              "target": {
+                "id": "60a88a0a-d05a-4384-b12a-0b6f134c6ebf"
+              },
+              "vertices": [],
+              "id": "020ac524-9a8b-4c65-a427-59798f9bfc2a",
+              "labels": [
+                {
+                  "position": 0.5,
+                  "attrs": {
+                    "text": {
+                      "text": "Tag Data",
+                      "font-weight": "400",
+                      "font-size": "small"
+                    }
+                  }
+                }
+              ],
+              "z": 13,
+              "hasOpenThreats": false,
+              "description": "Tag data includes:\n- Owner's email address\n- Owner's physical address (Shipping)\n- Dog name\n- Dog breed",
+              "attrs": {
+                ".marker-target": {
+                  "class": "marker-target hasNoOpenThreats isInScope"
+                },
+                ".connection": {
+                  "class": "connection hasNoOpenThreats isInScope"
+                }
+              }
+            },
+            {
+              "type": "tm.Flow",
+              "size": {
+                "width": 10,
+                "height": 10
+              },
+              "smooth": true,
+              "source": {
+                "id": "60a88a0a-d05a-4384-b12a-0b6f134c6ebf"
+              },
+              "target": {
+                "id": "bbe7160e-71d9-47f4-b8ae-48062cf589a0"
+              },
+              "vertices": [],
+              "id": "1e2d5eed-4a98-4d7d-ab9a-a7c3194549c0",
+              "labels": [
+                {
+                  "position": {
+                    "distance": 0.5150262243254013,
+                    "offset": -5.6739674189939
+                  },
+                  "attrs": {
+                    "text": {
+                      "text": "Tag Data",
+                      "font-weight": "400",
+                      "font-size": "small"
+                    }
+                  }
+                }
+              ],
+              "z": 14,
+              "hasOpenThreats": false,
+              "description": "See \"Tag Data\" in addition to:\n- Unique tag ID",
+              "attrs": {
+                ".marker-target": {
+                  "class": "marker-target hasNoOpenThreats isInScope"
+                },
+                ".connection": {
+                  "class": "connection hasNoOpenThreats isInScope"
+                }
+              }
+            },
+            {
+              "type": "tm.Process",
+              "size": {
+                "width": 100,
+                "height": 100
+              },
+              "position": {
+                "x": 439,
+                "y": 29
+              },
+              "angle": 0,
+              "id": "7bae42d0-c5ca-4be6-8d0b-34294733c56d",
+              "z": 15,
+              "hasOpenThreats": false,
+              "description": "This process will retrieve the current user data.",
+              "attrs": {
+                ".element-shape": {
+                  "class": "element-shape hasNoOpenThreats isInScope"
+                },
+                "text": {
+                  "text": "Renew\nRegistration"
+                },
+                ".element-text": {
+                  "class": "element-text hasNoOpenThreats isInScope"
+                }
+              }
+            },
+            {
+              "type": "tm.Flow",
+              "size": {
+                "width": 10,
+                "height": 10
+              },
+              "smooth": true,
+              "source": {
+                "id": "c6a80e75-b462-4269-b296-95a35c8a49a4"
+              },
+              "target": {
+                "id": "7bae42d0-c5ca-4be6-8d0b-34294733c56d"
+              },
+              "vertices": [],
+              "id": "37bac5f5-a124-491a-b7d1-c5bde62bf757",
+              "labels": [
+                {
+                  "position": {
+                    "distance": 0.4472914134385064,
+                    "offset": -2
+                  },
+                  "attrs": {
+                    "text": {
+                      "text": "Latest Data",
+                      "font-weight": "400",
+                      "font-size": "small"
+                    }
+                  }
+                }
+              ],
+              "z": 16,
+              "hasOpenThreats": false,
+              "description": "Latest data includes:\n- Latest tag ID\n- Address to deliver new tag to",
+              "attrs": {
+                ".marker-target": {
+                  "class": "marker-target hasNoOpenThreats isInScope"
+                },
+                ".connection": {
+                  "class": "connection hasNoOpenThreats isInScope"
+                }
+              }
+            },
+            {
+              "type": "tm.Flow",
+              "size": {
+                "width": 10,
+                "height": 10
+              },
+              "smooth": true,
+              "source": {
+                "id": "7bae42d0-c5ca-4be6-8d0b-34294733c56d"
+              },
+              "target": {
+                "id": "469f4ccf-3fb5-477f-901f-54bd475d62b2"
+              },
+              "vertices": [],
+              "id": "69a30d39-c59e-4c02-87c3-4720854a7949",
+              "labels": [
+                {
+                  "position": 0.5,
+                  "attrs": {
+                    "text": {
+                      "text": "Owner Data",
+                      "font-weight": "400",
+                      "font-size": "small"
+                    }
+                  }
+                }
+              ],
+              "z": 17,
+              "hasOpenThreats": false,
+              "attrs": {
+                ".marker-target": {
+                  "class": "marker-target hasNoOpenThreats isInScope"
+                },
+                ".connection": {
+                  "class": "connection hasNoOpenThreats isInScope"
+                }
+              }
+            },
+            {
+              "type": "tm.Flow",
+              "size": {
+                "width": 10,
+                "height": 10
+              },
+              "smooth": true,
+              "source": {
+                "id": "7bae42d0-c5ca-4be6-8d0b-34294733c56d"
+              },
+              "target": {
+                "id": "60a88a0a-d05a-4384-b12a-0b6f134c6ebf"
+              },
+              "vertices": [],
+              "id": "417792ee-88e9-48e8-b910-4808c022eb87",
+              "labels": [
+                {
+                  "position": 0.5,
+                  "attrs": {
+                    "text": {
+                      "text": "Latest Tag ID",
+                      "font-weight": "400",
+                      "font-size": "small"
+                    }
+                  }
+                }
+              ],
+              "z": 21,
+              "hasOpenThreats": false,
+              "description": "This data includes:\n- Latest dog tag ID\n\nThis is used to identify the matching entry in the database to update with a new ID.",
+              "attrs": {
+                ".marker-target": {
+                  "class": "marker-target hasNoOpenThreats isInScope"
+                },
+                ".connection": {
+                  "class": "connection hasNoOpenThreats isInScope"
+                }
+              }
+            },
+            {
+              "type": "tm.Process",
+              "size": {
+                "width": 100,
+                "height": 100
+              },
+              "position": {
+                "x": 550,
+                "y": 460
+              },
+              "angle": 0,
+              "id": "52c1ea57-d561-4a90-9a90-1b392c908127",
+              "z": 22,
+              "hasOpenThreats": false,
+              "description": "This process deletes the dog & user data from the system.",
+              "attrs": {
+                ".element-shape": {
+                  "class": "element-shape hasNoOpenThreats isInScope"
+                },
+                "text": {
+                  "text": "Terminate\nRegistration"
+                },
+                ".element-text": {
+                  "class": "element-text hasNoOpenThreats isInScope"
+                }
+              }
+            },
+            {
+              "type": "tm.Flow",
+              "size": {
+                "width": 10,
+                "height": 10
+              },
+              "smooth": true,
+              "source": {
+                "id": "c6a80e75-b462-4269-b296-95a35c8a49a4"
+              },
+              "target": {
+                "id": "52c1ea57-d561-4a90-9a90-1b392c908127"
+              },
+              "vertices": [],
+              "id": "5b1823c8-7533-4624-a060-2a6846dc63b3",
+              "labels": [
+                {
+                  "position": 0.5,
+                  "attrs": {
+                    "text": {
+                      "text": "Termination Data",
+                      "font-weight": "400",
+                      "font-size": "small"
+                    }
+                  }
+                }
+              ],
+              "z": 23,
+              "hasOpenThreats": false,
+              "description": "Termination data includes:\n- Owner's email address\n- Dog tag ID\n- Dog's name",
+              "attrs": {
+                ".marker-target": {
+                  "class": "marker-target hasNoOpenThreats isInScope"
+                },
+                ".connection": {
+                  "class": "connection hasNoOpenThreats isInScope"
+                }
+              }
+            },
+            {
+              "type": "tm.Process",
+              "size": {
+                "width": 100,
+                "height": 100
+              },
+              "position": {
+                "x": 620,
+                "y": 170
+              },
+              "angle": 0,
+              "id": "c35fa370-e652-4cf3-b719-60f3d1a09cd4",
+              "z": 24,
+              "hasOpenThreats": false,
+              "description": "This process emails the owner depending on the given content.",
+              "attrs": {
+                ".element-shape": {
+                  "class": "element-shape hasNoOpenThreats isInScope"
+                },
+                "text": {
+                  "text": "Email"
+                },
+                ".element-text": {
+                  "class": "element-text hasNoOpenThreats isInScope"
+                }
+              }
+            },
+            {
+              "type": "tm.Flow",
+              "size": {
+                "width": 10,
+                "height": 10
+              },
+              "smooth": true,
+              "source": {
+                "id": "c35fa370-e652-4cf3-b719-60f3d1a09cd4"
+              },
+              "target": {
+                "id": "c6a80e75-b462-4269-b296-95a35c8a49a4"
+              },
+              "vertices": [],
+              "id": "6d934b77-ac94-4982-9ba0-84fe8ed306c7",
+              "labels": [
+                {
+                  "position": 0.5,
+                  "attrs": {
+                    "text": {
+                      "text": "Email Data",
+                      "font-weight": "400",
+                      "font-size": "small"
+                    }
+                  }
+                }
+              ],
+              "z": 25,
+              "hasOpenThreats": false,
+              "description": "Email data includes content given from prior processes",
+              "attrs": {
+                ".marker-target": {
+                  "class": "marker-target hasNoOpenThreats isInScope"
+                },
+                ".connection": {
+                  "class": "connection hasNoOpenThreats isInScope"
+                }
+              }
+            },
+            {
+              "type": "tm.Flow",
+              "size": {
+                "width": 10,
+                "height": 10
+              },
+              "smooth": true,
+              "source": {
+                "id": "52c1ea57-d561-4a90-9a90-1b392c908127"
+              },
+              "target": {
+                "id": "c35fa370-e652-4cf3-b719-60f3d1a09cd4"
+              },
+              "vertices": [],
+              "id": "d2b1cdb4-d557-4618-a537-ff69341e8c6e",
+              "labels": [
+                {
+                  "position": 0.5,
+                  "attrs": {
+                    "text": {
+                      "text": "Termination Email\nData",
+                      "font-weight": "400",
+                      "font-size": "small"
+                    }
+                  }
+                }
+              ],
+              "z": 26,
+              "hasOpenThreats": false,
+              "description": "This data includes the termination email content.",
+              "attrs": {
+                ".marker-target": {
+                  "class": "marker-target hasNoOpenThreats isInScope"
+                },
+                ".connection": {
+                  "class": "connection hasNoOpenThreats isInScope"
+                }
+              }
+            }
+          ]
+        },
+        "size": {
+          "height": 3697,
+          "width": 5421
+        }
       }
-    ],
-    "diagramTop": 1,
-    "reviewer": "",
-    "threatTop": 0
+    ]
   }
 }
