@@ -1,0 +1,16 @@
+{
+  "version": "2.2.0",
+  "summary": {
+    "title": "Threat Moddelling",
+    "owner": "",
+    "description": "The system under study is a web-based application designed to register dogs in order to get their identification tags, as well as the management and traceability of dogs. Owners can register their dogs, and receive or renew their unique tags delivered by the Council. Dogs can be declared lost or found, and owners can terminate a registration before its expiration date.",
+    "id": 0
+  },
+  "detail": {
+    "contributors": [],
+    "diagrams": [],
+    "diagramTop": 0,
+    "reviewer": "",
+    "threatTop": 0
+  }
+}
