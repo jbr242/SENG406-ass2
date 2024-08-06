@@ -16,7 +16,288 @@
         "placeholder": "New STRIDE diagram description",
         "thumbnail": "./public/content/images/thumbnail.stride.jpg",
         "version": "2.2.0",
-        "cells": []
+        "cells": [
+          {
+            "position": {
+              "x": 510,
+              "y": 110
+            },
+            "size": {
+              "width": 210,
+              "height": 140
+            },
+            "attrs": {
+              "text": {
+                "text": "Renew Registration"
+              },
+              "body": {
+                "stroke": "#333333",
+                "strokeWidth": 1.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "process",
+            "id": "0818e505-4142-42f7-842e-a3fd1be9fee5",
+            "zIndex": 1,
+            "data": {
+              "type": "tm.Process",
+              "name": "Renew Registration",
+              "description": "Before the end of a registration (typically after a year since the registration), owners have to renew a dog’s registration. ",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "handlesCardPayment": false,
+              "handlesGoodsOrServices": false,
+              "isWebApplication": false,
+              "privilegeLevel": "",
+              "threats": []
+            }
+          },
+          {
+            "position": {
+              "x": 830,
+              "y": 130
+            },
+            "size": {
+              "width": 120,
+              "height": 60
+            },
+            "attrs": {
+              "text": {
+                "text": "User Datastore\n"
+              },
+              "topLine": {
+                "strokeWidth": 1.5,
+                "strokeDasharray": null
+              },
+              "bottomLine": {
+                "strokeWidth": 1.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "store",
+            "id": "865ea85b-a9b1-4405-94c3-4e08a840f55f",
+            "zIndex": 2,
+            "data": {
+              "type": "tm.Store",
+              "name": "User Datastore\n",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isALog": false,
+              "isEncrypted": false,
+              "isSigned": false,
+              "storesCredentials": false,
+              "storesInventory": false,
+              "threats": []
+            }
+          },
+          {
+            "shape": "trust-boundary-curve",
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Boundary",
+              "name": "",
+              "description": "",
+              "isTrustBoundary": true,
+              "hasOpenThreats": false
+            },
+            "id": "f7e702a5-c9a8-4fbe-9f00-5b36ed8e86b7",
+            "source": {
+              "x": 460,
+              "y": 80
+            },
+            "target": {
+              "x": 690,
+              "y": 500
+            }
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "tag id\n",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": []
+            },
+            "id": "862bafc2-5212-40ad-972f-8487cf938f18",
+            "source": {
+              "x": 290,
+              "y": 110
+            },
+            "target": {
+              "cell": "0818e505-4142-42f7-842e-a3fd1be9fee5"
+            },
+            "labels": [
+              "tag id\n"
+            ]
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "Personal details",
+              "description": "User details include:\n  * address",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": []
+            },
+            "id": "6d15f41b-bf33-4936-9174-d61a060c33b2",
+            "source": {
+              "x": 293,
+              "y": 130
+            },
+            "target": {
+              "cell": "0818e505-4142-42f7-842e-a3fd1be9fee5"
+            },
+            "vertices": [
+              {
+                "x": 370,
+                "y": 187
+              }
+            ],
+            "labels": [
+              "Personal details"
+            ]
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "invoice",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": []
+            },
+            "id": "6bb9c954-2abf-4722-bf0f-5926a143a62d",
+            "source": {
+              "cell": "0818e505-4142-42f7-842e-a3fd1be9fee5"
+            },
+            "target": {
+              "x": 250,
+              "y": 160
+            },
+            "vertices": [
+              {
+                "x": 450,
+                "y": 280
+              },
+              {
+                "x": 310,
+                "y": 240
+              }
+            ],
+            "labels": [
+              "invoice"
+            ]
+          },
+          {
+            "position": {
+              "x": 170,
+              "y": 90
+            },
+            "size": {
+              "width": 112.5,
+              "height": 60
+            },
+            "attrs": {
+              "text": {
+                "text": "end-user\n"
+              },
+              "body": {
+                "stroke": "#333333",
+                "strokeWidth": 1.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "actor",
+            "id": "b90b0b6e-c3e9-40ca-9df5-416fb0dde97f",
+            "zIndex": 11,
+            "data": {
+              "type": "tm.Actor",
+              "name": "end-user\n",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "providesAuthentication": false,
+              "threats": []
+            }
+          }
+        ]
       },
       {
         "id": 1,
