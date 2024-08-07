@@ -1,0 +1,853 @@
+{
+  "summary": {
+    "title": "Dog Registration System",
+    "owner": "Group 13",
+    "description": "The system under study is a web-based application designed to register dogs in order to get their identification tags, as well as the management and traceability of dogs. Owners can register their dogs, and receive or renew their unique tags delivered by the Council. Dogs can be declared lost or found, and owners can terminate a registration before its expiration date. Figure 1 depicts a simplified domain model of this application.\nFigure 1: Simplified domain model for the dog registration system\n1.1 Functional features\n1.1.1 Register a dog\nOwners can register their dogs on the Council’s application webpage. They use their personal details, i.e. pronoun, first and last name, email address, and physical address where the dog will be located and where the tag needs to be shipped to (same address for both). When registering the dog, they submit its name, and breed. Upon completion of the registration process, they receive a unique registration number, and an expiry date for the registration. An\n SENG406 - Assignment 2 - Threat modelling 1 / 4\n1.\n2.\n2.1\naPDFreportpresentingyourthreatmodellingandanalysisoftheabovesystem.YoumustuseOWASPThreatDragon to guide your reflection. However, the generated report from that tool does not contain all information that\nwe expect, so you will have to append the content of the generated report into a complete PDF report.\nthe JSON model exported from Threat Dragon.\nExpected content of report\n1.2 Declare a lost dog\n invoice is generated in PDF and sent by email to the owner, that the owner will have to pay by bank transfer, indicating the registration number in reference. A tag with a unique ID is created. The tag ID is an 8 digit unique number such that at any time, there are no dogs with the same tag ID. The tag will be sent to the address indicated by the owner.\n1.1.2 Renew a registration\nBefore the end of a registration (typically after a year since the registration), owners have to renew a dog’s registra- tion. To this end, they have to introduce the latest tag ID, and the address to deliver the new tag to. A new invoice will be created and sent to the email address matching that tag. The new tag, with a new ID, will be associated to the dog previously associated to the tag to renew.\n1.1.3 Terminate a registration\nOwners can terminate a dog’s registration in the event of moving to a new city, the dog being passed to a new owner, or the dog’s death. To terminate a dog’s registration, the owner needs to introduce their email address, the tag ID, and the dog’s name. A confirmation email will be sent to the owners to confirm that the dog is not registered anymore, and that the tag can be destroyed. The email also contains a link to the registration process on the Council’s application in case the dog’s registration was terminated by mistake.\n1.2 Declare a lost dog\nOwners can report their dog as lost. To this end, they need to encode their email address used to register the dog, and the dog’s name. The Council system will send a confirmation email of the dog’s lost status, with the last known tag ID, also displayed on the confirmation webpage.\n1.3 Report of found dog\nMembers of the public can report found dogs that seem to be lost. For this, they have to introduce the dog’s tag ID, and a physical address where the dog is currently located, so dog services can come and pick it up. The Council will then contact the owner on their email address, matching the tag ID.\n1.4 Additional constraints and non-functional requirements\nHere is a list of additional constrains for this system:\n• The system must be available publicly on a website from both desktop and mobile devices. • The full software application is deployed on premise, controlled by the Council’s staff.\n• Council staff maintain the infrastructure (hardware) that runs the software application."
+  },
+  "detail": {
+    "contributors": [],
+    "diagrams": [
+      {
+        "cells": [
+          {
+            "position": {
+              "x": -240,
+              "y": -40
+            },
+            "size": {
+              "width": 160,
+              "height": 80
+            },
+            "attrs": {
+              "text": {
+                "text": "Dog Owner"
+              },
+              "body": {
+                "stroke": "#333333",
+                "strokeWidth": 1.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "actor",
+            "zIndex": 1,
+            "id": "c6a80e75-b462-4269-b296-95a35c8a49a4",
+            "data": {
+              "name": "Dog Owner",
+              "description": "",
+              "type": "tm.Actor",
+              "isTrustBoundary": false,
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "threats": [],
+              "hasOpenThreats": false,
+              "providesAuthentication": false
+            }
+          },
+          {
+            "position": {
+              "x": 30,
+              "y": 210
+            },
+            "size": {
+              "width": 100,
+              "height": 100
+            },
+            "attrs": {
+              "text": {
+                "text": "Register a dog"
+              },
+              "body": {
+                "stroke": "#333333",
+                "strokeWidth": 1.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "process",
+            "zIndex": 3,
+            "id": "f0b5788b-68cf-4393-89ff-b06483e4f64e",
+            "data": {
+              "name": "Register a dog",
+              "description": "",
+              "type": "tm.Process",
+              "isTrustBoundary": false,
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "threats": [
+                {
+                  "id": "cbbab80c-2a50-4c9f-b8de-be055dcb2c25",
+                  "title": "Deny Registering Dog",
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "type": "Repudiation",
+                  "description": "Dog Owner Claims they did not register",
+                  "mitigation": "* Trace (log) session id, timestamp, originating IP and user id in log.\n* Send confirmation information",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 102,
+                  "score": ""
+                },
+                {
+                  "id": "cd7c0326-6965-498c-83d4-e0a052ce530d",
+                  "title": "Flooding Registrations",
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "type": "Denial of service",
+                  "description": "More than one registration requests coming from the same user and/or IP within a few seconds. ",
+                  "mitigation": "Disallow multiple requests from same origin IP (IP blocking after multiple calls) within in few seconds.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 103,
+                  "score": ""
+                },
+                {
+                  "id": "5b356ab3-9459-4cd2-bb15-22f570586a13",
+                  "title": "Adversary in the middle change content of registration",
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "type": "Tampering",
+                  "description": "An adversary-in-the-middle intercepts the registration and modifies its content.",
+                  "mitigation": "Use secure connection, http-only and secure cookie with unique session id.\n",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 104,
+                  "score": ""
+                }
+              ],
+              "hasOpenThreats": false,
+              "handlesCardPayment": null,
+              "isWebApplication": null
+            }
+          },
+          {
+            "position": {
+              "x": -170,
+              "y": 350
+            },
+            "size": {
+              "width": 100,
+              "height": 100
+            },
+            "attrs": {
+              "text": {
+                "text": "Invoice\nGeneration"
+              },
+              "body": {
+                "stroke": "#333333",
+                "strokeWidth": 1.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "process",
+            "zIndex": 5,
+            "id": "469f4ccf-3fb5-477f-901f-54bd475d62b2",
+            "data": {
+              "name": "Invoice\nGeneration",
+              "description": "Process to generate an invoice for the dog owner as a pdf upon registration.",
+              "type": "tm.Process",
+              "isTrustBoundary": false,
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "threats": [],
+              "hasOpenThreats": false
+            }
+          },
+          {
+            "position": {
+              "x": 280,
+              "y": 230
+            },
+            "size": {
+              "width": 100,
+              "height": 100
+            },
+            "attrs": {
+              "text": {
+                "text": "Tag Creator"
+              },
+              "body": {
+                "stroke": "#333333",
+                "strokeWidth": 1.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "process",
+            "zIndex": 8,
+            "id": "60a88a0a-d05a-4384-b12a-0b6f134c6ebf",
+            "data": {
+              "name": "Tag Creator",
+              "description": "Tag creator creates and updates a unique 8-digit number such that any time, there are no dogs with the same tag ID.",
+              "type": "tm.Process",
+              "isTrustBoundary": false,
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "threats": [],
+              "hasOpenThreats": false
+            }
+          },
+          {
+            "position": {
+              "x": 480,
+              "y": 150
+            },
+            "size": {
+              "width": 160,
+              "height": 80
+            },
+            "attrs": {
+              "text": {
+                "text": "Dog Tag Datastore"
+              },
+              "topLine": {
+                "strokeWidth": 1.5,
+                "strokeDasharray": null
+              },
+              "bottomLine": {
+                "strokeWidth": 1.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "store",
+            "zIndex": 9,
+            "id": "bbe7160e-71d9-47f4-b8ae-48062cf589a0",
+            "data": {
+              "name": "Dog Tag Datastore",
+              "description": "This database includes all dog tag data",
+              "type": "tm.Store",
+              "isTrustBoundary": false,
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "threats": [],
+              "hasOpenThreats": false,
+              "isALog": false,
+              "storesCredentials": false,
+              "isEncrypted": false,
+              "isSigned": false,
+              "storesInventory": null
+            }
+          },
+          {
+            "position": {
+              "x": 480,
+              "y": 40
+            },
+            "size": {
+              "width": 160,
+              "height": 80
+            },
+            "attrs": {
+              "text": {
+                "text": "User Datastore"
+              },
+              "topLine": {
+                "strokeWidth": 1.5,
+                "strokeDasharray": null
+              },
+              "bottomLine": {
+                "strokeWidth": 1.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "store",
+            "zIndex": 10,
+            "id": "88a26d35-601c-4434-a521-264cf18f48b9",
+            "data": {
+              "name": "User Datastore",
+              "description": "This database contains all user data.",
+              "type": "tm.Store",
+              "isTrustBoundary": false,
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "threats": [],
+              "hasOpenThreats": false,
+              "isALog": false,
+              "storesCredentials": false,
+              "isEncrypted": false,
+              "isSigned": false
+            }
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "Owner Data",
+              "description": "Owner data includes:\n- First name\n- Last name\n- Email address",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": [],
+              "isTrustBoundary": false
+            },
+            "id": "ca401b25-51d6-4f20-a1f5-2cabc999cb3c",
+            "labels": [
+              {
+                "position": 0.5,
+                "attrs": {
+                  "label": {
+                    "text": "Owner Data"
+                  }
+                }
+              }
+            ],
+            "source": {
+              "cell": "f0b5788b-68cf-4393-89ff-b06483e4f64e"
+            },
+            "target": {
+              "cell": "469f4ccf-3fb5-477f-901f-54bd475d62b2"
+            },
+            "vertices": []
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "User Data",
+              "description": "User data includes:\n- Pronouns\n- First name\n- Last name\n- Email address\n- Physical address (Shipping)",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": [],
+              "isTrustBoundary": false
+            },
+            "id": "d4975188-6190-421c-8fc8-843b28030b8b",
+            "labels": [
+              {
+                "position": 0.5,
+                "attrs": {
+                  "label": {
+                    "text": "User Data"
+                  }
+                }
+              }
+            ],
+            "source": {
+              "cell": "f0b5788b-68cf-4393-89ff-b06483e4f64e"
+            },
+            "target": {
+              "cell": "88a26d35-601c-4434-a521-264cf18f48b9"
+            },
+            "vertices": []
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "Tag Data",
+              "description": "See \"Tag Data\" in addition to:\n- Unique tag ID",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": [],
+              "isTrustBoundary": false
+            },
+            "id": "3b3861f8-36e3-4b2f-ab0d-76cc0a1b6ccc",
+            "labels": [
+              {
+                "position": {
+                  "distance": 0.5150262243254013,
+                  "offset": -5.6739674189939
+                },
+                "attrs": {
+                  "label": {
+                    "text": "Tag Data"
+                  }
+                }
+              }
+            ],
+            "source": {
+              "cell": "60a88a0a-d05a-4384-b12a-0b6f134c6ebf"
+            },
+            "target": {
+              "cell": "bbe7160e-71d9-47f4-b8ae-48062cf589a0"
+            },
+            "vertices": []
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "Invoice Data",
+              "description": "Invoice data includes:\n- Amount payable\n- Bank information\n- Registration number",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": [],
+              "isTrustBoundary": false
+            },
+            "id": "3b24a6d4-a4b9-4fe6-a5e9-95bd063588a1",
+            "labels": [
+              {
+                "position": {
+                  "distance": 0.5307598304365477,
+                  "offset": -1.676339157570621
+                },
+                "attrs": {
+                  "label": {
+                    "text": "Invoice Data"
+                  }
+                }
+              }
+            ],
+            "source": {
+              "cell": "469f4ccf-3fb5-477f-901f-54bd475d62b2"
+            },
+            "target": {
+              "cell": "c6a80e75-b462-4269-b296-95a35c8a49a4"
+            },
+            "vertices": [
+              {
+                "x": -110,
+                "y": 150
+              }
+            ]
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "Invoice Data",
+              "description": "Invoice data includes:\n- Amount payable\n- Bank information\n- Registration number",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": []
+            },
+            "id": "306f16bf-1111-47c2-8cd0-9ae71efe4e86",
+            "source": {
+              "cell": "469f4ccf-3fb5-477f-901f-54bd475d62b2"
+            },
+            "target": {
+              "cell": "dd083fb3-3814-427e-846b-0d3f8c06133e"
+            },
+            "vertices": [
+              {
+                "x": 140,
+                "y": 380
+              },
+              {
+                "x": 410,
+                "y": 350
+              }
+            ],
+            "labels": [
+              "Invoice Data"
+            ]
+          },
+          {
+            "shape": "trust-boundary-curve",
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Boundary",
+              "name": "",
+              "description": "",
+              "isTrustBoundary": true,
+              "hasOpenThreats": false
+            },
+            "id": "2d63a604-529b-44ac-9977-2cb2cc40c6fb",
+            "source": {
+              "x": -230,
+              "y": 430
+            },
+            "target": {
+              "x": 500,
+              "y": 10
+            },
+            "vertices": [
+              {
+                "x": 20,
+                "y": 200
+              }
+            ]
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "Tag Data",
+              "description": "Tag data includes:\n- Owner's email address\n- Owner's physical address (Shipping)\n- Dog name\n- Dog breed",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": [],
+              "isTrustBoundary": false
+            },
+            "id": "bbbbbf46-8afa-4ecd-9eef-5ac6f7ece6ab",
+            "labels": [
+              {
+                "position": 0.5,
+                "attrs": {
+                  "label": {
+                    "text": "Tag Data"
+                  }
+                }
+              }
+            ],
+            "source": {
+              "cell": "f0b5788b-68cf-4393-89ff-b06483e4f64e"
+            },
+            "target": {
+              "cell": "60a88a0a-d05a-4384-b12a-0b6f134c6ebf"
+            },
+            "vertices": [
+              {
+                "x": 190,
+                "y": 300
+              },
+              {
+                "x": 210,
+                "y": 300
+              }
+            ]
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "Registration Details",
+              "description": "Registration details include:\n- Unique registration number\n- Expiry date",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": [
+                {
+                  "id": "afa522ea-9188-453c-8096-360618635609",
+                  "title": "Insecure Connection",
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "type": "Tampering",
+                  "description": "Data can be tampered by an adversary in the middle where the expiry date, and unique registration number could be edited.",
+                  "mitigation": "Use Transport Layer Security for the communication",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 105,
+                  "score": ""
+                },
+                {
+                  "id": "b68f127a-5ace-46ba-b770-4a29ebbe41a9",
+                  "title": "Insecure Connection",
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "type": "Information disclosure",
+                  "description": "Data can be viewed by an adversary in the middle where the expiry date, and unique registration number could be seen.",
+                  "mitigation": "Use Transport Layer Security for the communication.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 106,
+                  "score": ""
+                }
+              ]
+            },
+            "id": "5937a924-b1f9-49da-ad45-97c0046a1f93",
+            "source": {
+              "cell": "f0b5788b-68cf-4393-89ff-b06483e4f64e"
+            },
+            "target": {
+              "cell": "c6a80e75-b462-4269-b296-95a35c8a49a4"
+            },
+            "vertices": [
+              {
+                "x": 110,
+                "y": 180
+              },
+              {
+                "x": 70,
+                "y": 140
+              },
+              {
+                "x": 10,
+                "y": 100
+              },
+              {
+                "x": -10,
+                "y": 80
+              }
+            ],
+            "labels": [
+              "Registration Details"
+            ]
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "Registration Data",
+              "description": "Registration data includes:\n- Pronouns\n- First name\n- Last name\n- Email address\n- Physical address (Shipping)\n- Dog name\n- Dog breed",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": [
+                {
+                  "id": "aa785036-70fe-4a5c-a3b3-b4baafc0f525",
+                  "title": "Insecure Connection",
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "type": "Information disclosure",
+                  "description": " An attacker could intercept registration details during transmission.",
+                  "mitigation": "Use encryption (e.g., HTTPS) to protect registration details during transmission.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 101,
+                  "score": ""
+                },
+                {
+                  "id": "ffa98e69-811b-439e-9192-917d7fc89d93",
+                  "title": "Insecure Connection",
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "type": "Tampering",
+                  "description": "Data can be modified by an adversary in the middle where the information inputted by the user could be modified. ",
+                  "mitigation": "Use Transport Layer Security for the communication.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 108,
+                  "score": ""
+                }
+              ],
+              "isTrustBoundary": false
+            },
+            "id": "73e5ecac-08ff-4022-bea4-cf442d9441b9",
+            "labels": [
+              {
+                "position": 0.5,
+                "attrs": {
+                  "label": {
+                    "text": "Registration Data"
+                  }
+                }
+              }
+            ],
+            "source": {
+              "cell": "c6a80e75-b462-4269-b296-95a35c8a49a4"
+            },
+            "target": {
+              "cell": "f0b5788b-68cf-4393-89ff-b06483e4f64e"
+            },
+            "vertices": [
+              {
+                "x": -10,
+                "y": 180
+              }
+            ]
+          },
+          {
+            "position": {
+              "x": 480,
+              "y": 310
+            },
+            "size": {
+              "width": 160,
+              "height": 80
+            },
+            "attrs": {
+              "text": {
+                "text": "Invoice Datastore"
+              },
+              "topLine": {
+                "strokeWidth": 1.5,
+                "strokeDasharray": null
+              },
+              "bottomLine": {
+                "strokeWidth": 1.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "store",
+            "id": "dd083fb3-3814-427e-846b-0d3f8c06133e",
+            "zIndex": 25,
+            "data": {
+              "type": "tm.Store",
+              "name": "Invoice Datastore",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isALog": false,
+              "isEncrypted": false,
+              "isSigned": false,
+              "storesCredentials": false,
+              "storesInventory": false,
+              "threats": []
+            }
+          }
+        ],
+        "version": "2.2.0",
+        "title": "Register Dog",
+        "thumbnail": "./public/content/images/thumbnail.stride.jpg",
+        "id": 0,
+        "diagramType": "STRIDE"
+      }
+    ],
+    "diagramTop": 13,
+    "threatTop": 108
+  },
+  "version": "2.2.0"
+}
