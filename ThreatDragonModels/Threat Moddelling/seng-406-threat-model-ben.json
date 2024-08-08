@@ -1,0 +1,411 @@
+{
+  "summary": {
+    "title": "New threat model",
+    "owner": "Group 13"
+  },
+  "detail": {
+    "contributors": [],
+    "diagrams": [
+      {
+        "title": "Report of found dog",
+        "thumbnail": "./public/content/images/thumbnail.stride.jpg",
+        "diagramType": "STRIDE",
+        "id": 0,
+        "$$hashKey": "object:20",
+        "diagramJson": {
+          "cells": [
+            {
+              "type": "tm.Actor",
+              "size": {
+                "width": 160,
+                "height": 80
+              },
+              "position": {
+                "x": 304,
+                "y": 80
+              },
+              "angle": 0,
+              "id": "54242ec3-d8e2-4160-9c48-cf052e870083",
+              "z": 1,
+              "hasOpenThreats": false,
+              "description": "Members of the public",
+              "attrs": {
+                ".element-shape": {
+                  "class": "element-shape hasNoOpenThreats isInScope"
+                },
+                "text": {
+                  "text": "Public"
+                },
+                ".element-text": {
+                  "class": "element-text hasNoOpenThreats isInScope"
+                }
+              }
+            },
+            {
+              "type": "tm.Process",
+              "size": {
+                "width": 100,
+                "height": 100
+              },
+              "position": {
+                "x": 345,
+                "y": 253
+              },
+              "angle": 0,
+              "id": "2e103483-d7ca-4182-968f-b16113567601",
+              "z": 2,
+              "hasOpenThreats": false,
+              "description": "Process for reporting the lost dog",
+              "attrs": {
+                ".element-shape": {
+                  "class": "element-shape hasNoOpenThreats isInScope"
+                },
+                "text": {
+                  "text": "Report Dog\nLost"
+                },
+                ".element-text": {
+                  "class": "element-text hasNoOpenThreats isInScope"
+                }
+              }
+            },
+            {
+              "type": "tm.Flow",
+              "size": {
+                "width": 10,
+                "height": 10
+              },
+              "smooth": true,
+              "source": {
+                "id": "54242ec3-d8e2-4160-9c48-cf052e870083"
+              },
+              "target": {
+                "id": "2e103483-d7ca-4182-968f-b16113567601"
+              },
+              "vertices": [],
+              "id": "599bc0ab-7ec5-4297-928e-0dffa6fb4c3a",
+              "labels": [
+                {
+                  "position": 0.5,
+                  "attrs": {
+                    "text": {
+                      "text": "Reporting data",
+                      "font-weight": "400",
+                      "font-size": "small"
+                    }
+                  }
+                }
+              ],
+              "z": 3,
+              "hasOpenThreats": false,
+              "description": "Data includes:\n- Dog's tag ID\n- Physical address where the dog is currently located",
+              "attrs": {
+                ".marker-target": {
+                  "class": "marker-target hasNoOpenThreats isInScope"
+                },
+                ".connection": {
+                  "class": "connection hasNoOpenThreats isInScope"
+                }
+              }
+            },
+            {
+              "type": "tm.Actor",
+              "size": {
+                "width": 160,
+                "height": 80
+              },
+              "position": {
+                "x": 591,
+                "y": 126
+              },
+              "angle": 0,
+              "id": "05317f86-bd2a-4871-928c-b2b1ffcdc4c3",
+              "z": 5,
+              "hasOpenThreats": false,
+              "description": "Owner of the lost dog",
+              "attrs": {
+                ".element-shape": {
+                  "class": "element-shape hasNoOpenThreats isInScope"
+                },
+                "text": {
+                  "text": "Owner"
+                },
+                ".element-text": {
+                  "class": "element-text hasNoOpenThreats isInScope"
+                }
+              }
+            },
+            {
+              "type": "tm.Actor",
+              "size": {
+                "width": 160,
+                "height": 80
+              },
+              "position": {
+                "x": 41,
+                "y": 255
+              },
+              "angle": 0,
+              "id": "d5cb9d7a-96f8-452e-bf90-32f1493ae71d",
+              "z": 6,
+              "hasOpenThreats": false,
+              "description": "Dog services that pick up the lost dog",
+              "attrs": {
+                ".element-shape": {
+                  "class": "element-shape hasNoOpenThreats isInScope"
+                },
+                "text": {
+                  "text": "Dog Services"
+                },
+                ".element-text": {
+                  "class": "element-text hasNoOpenThreats isInScope"
+                }
+              }
+            },
+            {
+              "type": "tm.Flow",
+              "size": {
+                "width": 10,
+                "height": 10
+              },
+              "smooth": true,
+              "source": {
+                "id": "2e103483-d7ca-4182-968f-b16113567601"
+              },
+              "target": {
+                "id": "d5cb9d7a-96f8-452e-bf90-32f1493ae71d"
+              },
+              "vertices": [],
+              "id": "5096576f-7b17-42e6-96a1-9a0d64144b0c",
+              "labels": [
+                {
+                  "position": 0.5,
+                  "attrs": {
+                    "text": {
+                      "text": "Lost dog data",
+                      "font-weight": "400",
+                      "font-size": "small"
+                    }
+                  }
+                }
+              ],
+              "z": 7,
+              "hasOpenThreats": false,
+              "description": "See \"Reporting data\"",
+              "attrs": {
+                ".marker-target": {
+                  "class": "marker-target hasNoOpenThreats isInScope"
+                },
+                ".connection": {
+                  "class": "connection hasNoOpenThreats isInScope"
+                }
+              }
+            },
+            {
+              "type": "tm.Store",
+              "size": {
+                "width": 160,
+                "height": 80
+              },
+              "position": {
+                "x": 301,
+                "y": 467
+              },
+              "angle": 0,
+              "id": "c36a4501-5470-47f1-953c-160aa209d0ed",
+              "z": 8,
+              "hasOpenThreats": false,
+              "description": "Database storing the users in the system",
+              "attrs": {
+                ".element-shape": {
+                  "class": "element-shape hasNoOpenThreats isInScope"
+                },
+                "text": {
+                  "text": "User database"
+                },
+                ".element-text": {
+                  "class": "element-text hasNoOpenThreats isInScope"
+                }
+              }
+            },
+            {
+              "type": "tm.Flow",
+              "size": {
+                "width": 10,
+                "height": 10
+              },
+              "smooth": true,
+              "source": {
+                "id": "c36a4501-5470-47f1-953c-160aa209d0ed"
+              },
+              "target": {
+                "id": "2e103483-d7ca-4182-968f-b16113567601"
+              },
+              "vertices": [],
+              "id": "a9ccccf5-bb32-45ee-9b93-c4924712c5b2",
+              "labels": [
+                {
+                  "position": {
+                    "distance": 0.5688299696884315,
+                    "offset": -24.633105805740822
+                  },
+                  "attrs": {
+                    "text": {
+                      "text": "Owner data",
+                      "font-weight": "400",
+                      "font-size": "small"
+                    }
+                  }
+                }
+              ],
+              "z": 10,
+              "hasOpenThreats": false,
+              "description": "Data includes:\n- Owner's email retrieved from the tag ID data",
+              "attrs": {
+                ".marker-target": {
+                  "class": "marker-target hasNoOpenThreats isInScope"
+                },
+                ".connection": {
+                  "class": "connection hasNoOpenThreats isInScope"
+                }
+              }
+            },
+            {
+              "type": "tm.Boundary",
+              "size": {
+                "width": 10,
+                "height": 10
+              },
+              "smooth": true,
+              "source": {
+                "x": 160,
+                "y": 568
+              },
+              "target": {
+                "x": 587,
+                "y": 551
+              },
+              "vertices": [
+                {
+                  "x": 376,
+                  "y": 430
+                }
+              ],
+              "id": "1344c0f8-7a78-4eaf-b277-30305eb629f8",
+              "z": 11,
+              "attrs": {}
+            },
+            {
+              "type": "tm.Process",
+              "size": {
+                "width": 100,
+                "height": 100
+              },
+              "position": {
+                "x": 621,
+                "y": 256
+              },
+              "angle": 0,
+              "id": "dee33af9-fd72-4662-ac08-be52f2565799",
+              "z": 12,
+              "hasOpenThreats": false,
+              "description": "This process sends an email to the owner given the owner's email regarding their lost dog.",
+              "attrs": {
+                ".element-shape": {
+                  "class": "element-shape hasNoOpenThreats isInScope"
+                },
+                "text": {
+                  "text": "Automated\nEmail"
+                },
+                ".element-text": {
+                  "class": "element-text hasNoOpenThreats isInScope"
+                }
+              }
+            },
+            {
+              "type": "tm.Flow",
+              "size": {
+                "width": 10,
+                "height": 10
+              },
+              "smooth": true,
+              "source": {
+                "id": "2e103483-d7ca-4182-968f-b16113567601"
+              },
+              "target": {
+                "id": "dee33af9-fd72-4662-ac08-be52f2565799"
+              },
+              "vertices": [],
+              "id": "71847b3d-7a2a-44ca-a103-934a932f7c38",
+              "labels": [
+                {
+                  "position": 0.5,
+                  "attrs": {
+                    "text": {
+                      "text": "Owner/dog data",
+                      "font-weight": "400",
+                      "font-size": "small"
+                    }
+                  }
+                }
+              ],
+              "z": 13,
+              "hasOpenThreats": false,
+              "description": "Data includes:\n- Owner's email\n- Dog's tag ID",
+              "attrs": {
+                ".marker-target": {
+                  "class": "marker-target hasNoOpenThreats isInScope"
+                },
+                ".connection": {
+                  "class": "connection hasNoOpenThreats isInScope"
+                }
+              }
+            },
+            {
+              "type": "tm.Flow",
+              "size": {
+                "width": 10,
+                "height": 10
+              },
+              "smooth": true,
+              "source": {
+                "id": "dee33af9-fd72-4662-ac08-be52f2565799"
+              },
+              "target": {
+                "id": "05317f86-bd2a-4871-928c-b2b1ffcdc4c3"
+              },
+              "vertices": [],
+              "id": "785434bc-bc97-466c-a1cc-f660e8ef7ebd",
+              "labels": [
+                {
+                  "position": 0.5,
+                  "attrs": {
+                    "text": {
+                      "text": "Email data",
+                      "font-weight": "400",
+                      "font-size": "small"
+                    }
+                  }
+                }
+              ],
+              "z": 14,
+              "hasOpenThreats": false,
+              "description": "Data includes:\n- Information about their lost dog and where to find it (i.e. dog services)",
+              "attrs": {
+                ".marker-target": {
+                  "class": "marker-target hasNoOpenThreats isInScope"
+                },
+                ".connection": {
+                  "class": "connection hasNoOpenThreats isInScope"
+                }
+              }
+            }
+          ]
+        },
+        "size": {
+          "height": 646,
+          "width": 1846
+        }
+      }
+    ]
+  }
+}
