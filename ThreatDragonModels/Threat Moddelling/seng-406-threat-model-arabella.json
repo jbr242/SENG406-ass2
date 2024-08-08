@@ -28,7 +28,7 @@
             },
             "attrs": {
               "text": {
-                "text": "Renew \nRegistration"
+                "text": "Renew \nRegistration\nApp"
               },
               "body": {
                 "stroke": "#333333",
@@ -42,7 +42,7 @@
             "id": "0818e505-4142-42f7-842e-a3fd1be9fee5",
             "data": {
               "type": "tm.Process",
-              "name": "Renew \nRegistration",
+              "name": "Renew \nRegistration\nApp",
               "description": "Before the end of a registration (typically after a year since the registration), owners have to renew a dog’s registration. ",
               "outOfScope": false,
               "reasonOutOfScope": "",
@@ -96,33 +96,47 @@
             }
           },
           {
-            "shape": "trust-boundary-curve",
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
             "width": 200,
             "height": 100,
             "zIndex": 10,
             "connector": "smooth",
             "data": {
-              "type": "tm.Boundary",
-              "name": "",
+              "type": "tm.Flow",
+              "name": "New Tag ID",
               "description": "",
-              "isTrustBoundary": true,
-              "hasOpenThreats": false
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": []
             },
-            "id": "f7e702a5-c9a8-4fbe-9f00-5b36ed8e86b7",
+            "id": "332e3bfb-a3b2-4b28-af01-94e7b49098a6",
+            "labels": [
+              "New Tag ID"
+            ],
             "source": {
-              "x": 460,
-              "y": 80
+              "x": 670,
+              "y": 340
             },
             "target": {
-              "x": 620,
-              "y": 560
-            },
-            "vertices": [
-              {
-                "x": 530,
-                "y": 390
-              }
-            ]
+              "cell": "c072e522-2697-4d5f-b85c-ea22088a119b"
+            }
           },
           {
             "shape": "flow",
@@ -144,8 +158,8 @@
             "connector": "smooth",
             "data": {
               "type": "tm.Flow",
-              "name": "Renewal Details",
-              "description": "User details include:\n  * address",
+              "name": "Updated Details\n",
+              "description": "",
               "outOfScope": false,
               "reasonOutOfScope": "",
               "hasOpenThreats": false,
@@ -155,23 +169,16 @@
               "protocol": "",
               "threats": []
             },
-            "id": "6d15f41b-bf33-4936-9174-d61a060c33b2",
+            "id": "f2cb5916-5ebd-4fe1-aeac-9b732e239e80",
             "labels": [
-              "Renewal Details"
+              "Updated Details\n"
             ],
             "source": {
-              "x": 330,
-              "y": 350
-            },
-            "target": {
               "cell": "0818e505-4142-42f7-842e-a3fd1be9fee5"
             },
-            "vertices": [
-              {
-                "x": 460,
-                "y": 290
-              }
-            ]
+            "target": {
+              "cell": "865ea85b-a9b1-4405-94c3-4e08a840f55f"
+            }
           },
           {
             "shape": "flow",
@@ -193,8 +200,8 @@
             "connector": "smooth",
             "data": {
               "type": "tm.Flow",
-              "name": "Tag ID\n",
-              "description": "",
+              "name": "Invoice data\n",
+              "description": "Invoice details include:\n  * Invoice number\n  * Date of issue\n  * Seller and buyer names\n  * Price and units of purchase\n  * tax information",
               "outOfScope": false,
               "reasonOutOfScope": "",
               "hasOpenThreats": false,
@@ -204,21 +211,16 @@
               "protocol": "",
               "threats": []
             },
-            "id": "862bafc2-5212-40ad-972f-8487cf938f18",
-            "labels": [
-              "Tag ID\n"
-            ],
+            "id": "33a5f6cd-b4c9-4039-8197-e7c333dc30ee",
             "source": {
-              "cell": "b90b0b6e-c3e9-40ca-9df5-416fb0dde97f"
+              "cell": "87f2a9c0-15d3-4c71-b9ce-0ed616911a2c"
             },
             "target": {
-              "cell": "0818e505-4142-42f7-842e-a3fd1be9fee5"
+              "cell": "f749f1e2-67d7-4ff0-a8be-58a7f6b86a83"
             },
-            "vertices": [
-              {
-                "x": 400,
-                "y": 240
-              }
+            "vertices": [],
+            "labels": [
+              "Invoice data"
             ]
           },
           {
@@ -242,7 +244,7 @@
             "data": {
               "type": "tm.Flow",
               "name": "Invoice\n",
-              "description": "",
+              "description": "Invoice details include:\n  * Invoice number\n  * Date of issue\n  * Seller and buyer names\n  * Price and units of purchase\n  * tax information\n   * email address",
               "outOfScope": false,
               "reasonOutOfScope": "",
               "hasOpenThreats": false,
@@ -293,8 +295,204 @@
             "connector": "smooth",
             "data": {
               "type": "tm.Flow",
+              "name": "Renewal Details",
+              "description": "User details include:\n  * address",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": []
+            },
+            "id": "6d15f41b-bf33-4936-9174-d61a060c33b2",
+            "labels": [
+              "Renewal Details"
+            ],
+            "source": {
+              "x": 330,
+              "y": 350
+            },
+            "target": {
+              "cell": "0818e505-4142-42f7-842e-a3fd1be9fee5"
+            },
+            "vertices": [
+              {
+                "x": 460,
+                "y": 290
+              },
+              {
+                "x": 510,
+                "y": 260
+              }
+            ]
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "Owner Data",
+              "description": "Owner data includes:\n  * Email address\n  * Data needed to produce the invoice i.e. Owner name, tax info, account info.",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": []
+            },
+            "id": "8a62edfb-e0a9-4274-b55d-5078a8dccf4f",
+            "source": {
+              "cell": "0818e505-4142-42f7-842e-a3fd1be9fee5"
+            },
+            "target": {
+              "cell": "87f2a9c0-15d3-4c71-b9ce-0ed616911a2c"
+            },
+            "labels": [
+              "Owner Data"
+            ],
+            "vertices": [
+              {
+                "x": 540,
+                "y": 310
+              },
+              {
+                "x": 560,
+                "y": 400
+              }
+            ]
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "Tag Data",
+              "description": "Tag data includes:\n  * Tag ID",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": []
+            },
+            "id": "6ffda0f5-804c-49f9-a977-3307eff5a6b2",
+            "source": {
+              "cell": "0818e505-4142-42f7-842e-a3fd1be9fee5"
+            },
+            "target": {
+              "cell": "6c18b661-c923-4bd2-8ca3-52ae8c7b2498"
+            },
+            "labels": [
+              "Tag Data"
+            ]
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "Old Tag ID\n",
+              "description": "Tag ID that is destroyed when new ID is generated.",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": []
+            },
+            "id": "862bafc2-5212-40ad-972f-8487cf938f18",
+            "labels": [
+              "Old Tag ID\n"
+            ],
+            "source": {
+              "x": 310,
+              "y": 320
+            },
+            "target": {
+              "cell": "0818e505-4142-42f7-842e-a3fd1be9fee5"
+            },
+            "vertices": [
+              {
+                "x": 400,
+                "y": 240
+              }
+            ]
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
               "name": "Ship Tag",
-              "description": "",
+              "description": "Tag with new ID number on it.",
               "outOfScope": false,
               "reasonOutOfScope": "",
               "hasOpenThreats": false,
@@ -305,6 +503,9 @@
               "threats": []
             },
             "id": "034b5b69-cf2e-41e3-87ae-a5fe8c762ef4",
+            "labels": [
+              "Ship Tag"
+            ],
             "source": {
               "cell": "6c18b661-c923-4bd2-8ca3-52ae8c7b2498"
             },
@@ -312,51 +513,40 @@
               "x": 330,
               "y": 370
             },
-            "labels": [
-              "Ship Tag"
+            "vertices": [
+              {
+                "x": 480,
+                "y": 330
+              }
             ]
           },
           {
-            "shape": "flow",
-            "attrs": {
-              "line": {
-                "stroke": "#333333",
-                "targetMarker": {
-                  "name": "block"
-                },
-                "sourceMarker": {
-                  "name": ""
-                },
-                "strokeDasharray": null
-              }
-            },
+            "shape": "trust-boundary-curve",
             "width": 200,
             "height": 100,
             "zIndex": 10,
             "connector": "smooth",
             "data": {
-              "type": "tm.Flow",
-              "name": "New Tag ID",
-              "description": "",
-              "outOfScope": false,
-              "reasonOutOfScope": "",
-              "hasOpenThreats": false,
-              "isBidirectional": false,
-              "isEncrypted": false,
-              "isPublicNetwork": false,
-              "protocol": "",
-              "threats": []
+              "type": "tm.Boundary",
+              "name": "",
+              "description": "Hardware and software managed by council employees. Software is publicly available. ",
+              "isTrustBoundary": true,
+              "hasOpenThreats": false
             },
-            "id": "332e3bfb-a3b2-4b28-af01-94e7b49098a6",
+            "id": "f7e702a5-c9a8-4fbe-9f00-5b36ed8e86b7",
             "source": {
-              "x": 670,
-              "y": 340
+              "x": 460,
+              "y": 80
             },
             "target": {
-              "cell": "c072e522-2697-4d5f-b85c-ea22088a119b"
+              "x": 620,
+              "y": 560
             },
-            "labels": [
-              "New Tag ID"
+            "vertices": [
+              {
+                "x": 530,
+                "y": 390
+              }
             ]
           },
           {
@@ -379,7 +569,7 @@
             "connector": "smooth",
             "data": {
               "type": "tm.Flow",
-              "name": "Updated Details\n",
+              "name": "App Configuration",
               "description": "",
               "outOfScope": false,
               "reasonOutOfScope": "",
@@ -390,56 +580,23 @@
               "protocol": "",
               "threats": []
             },
-            "id": "f2cb5916-5ebd-4fe1-aeac-9b732e239e80",
+            "id": "369de434-de44-4619-99cb-fc6c388225d5",
             "source": {
+              "x": 323,
+              "y": 170
+            },
+            "target": {
               "cell": "0818e505-4142-42f7-842e-a3fd1be9fee5"
             },
-            "target": {
-              "cell": "865ea85b-a9b1-4405-94c3-4e08a840f55f"
-            },
-            "labels": [
-              "Updated Details\n"
-            ]
-          },
-          {
-            "shape": "flow",
-            "attrs": {
-              "line": {
-                "stroke": "#333333",
-                "targetMarker": {
-                  "name": "block"
-                },
-                "sourceMarker": {
-                  "name": ""
-                },
-                "strokeDasharray": null
+            "vertices": [
+              {
+                "x": 440,
+                "y": 140
               }
-            },
-            "width": 200,
-            "height": 100,
-            "zIndex": 10,
-            "connector": "smooth",
-            "data": {
-              "type": "tm.Flow",
-              "name": "Data Flow",
-              "description": "",
-              "outOfScope": false,
-              "reasonOutOfScope": "",
-              "hasOpenThreats": false,
-              "isBidirectional": false,
-              "isEncrypted": false,
-              "isPublicNetwork": false,
-              "protocol": "",
-              "threats": []
-            },
-            "id": "33a5f6cd-b4c9-4039-8197-e7c333dc30ee",
-            "source": {
-              "cell": "87f2a9c0-15d3-4c71-b9ce-0ed616911a2c"
-            },
-            "target": {
-              "cell": "f749f1e2-67d7-4ff0-a8be-58a7f6b86a83"
-            },
-            "vertices": []
+            ],
+            "labels": [
+              "App Configuration"
+            ]
           },
           {
             "position": {
@@ -452,7 +609,7 @@
             },
             "attrs": {
               "text": {
-                "text": "Dog Owner\n"
+                "text": "End-User\n"
               },
               "body": {
                 "stroke": "#333333",
@@ -466,13 +623,57 @@
             "id": "b90b0b6e-c3e9-40ca-9df5-416fb0dde97f",
             "data": {
               "type": "tm.Actor",
-              "name": "Dog Owner\n",
-              "description": "",
+              "name": "End-User\n",
+              "description": "An end-user would be a customer that is logged into the application as a dog owner, with a registration for at least a year. ",
               "outOfScope": false,
               "reasonOutOfScope": "",
               "hasOpenThreats": false,
               "providesAuthentication": false,
-              "threats": []
+              "threats": [
+                {
+                  "id": "9fca9d75-f918-4378-9769-5b8e59cd089a",
+                  "title": "Credential too weak or stolen",
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "type": "Spoofing",
+                  "description": "Credentials of user can be stolen or guessed.",
+                  "mitigation": "* Enforce strong password rules such as 10 characters and at least one of capital letter, number, special character, or passphrases.\n* Request two factor authentication.\n* Encrypt password (non-recoverable)",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 1,
+                  "score": ""
+                },
+                {
+                  "id": "f739662a-7101-49f4-ae53-eb8f393f7f72",
+                  "title": "Repudiation of order",
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "type": "Repudiation",
+                  "description": "Repudiation of order",
+                  "mitigation": "* Unique session ID is passed in http-only cookies\n* Force Secure flag in cookie\n* Log session ID on the server-side to ensure traceability and uniqueness of originating client.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 2,
+                  "score": ""
+                },
+                {
+                  "id": "181fc86b-7372-463d-bec6-76b1cb375812",
+                  "title": "Phishing",
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "type": "Spoofing",
+                  "description": "When an attacker sends phishing emails to gain access to assets such as passwords, email addresses, tag ids etc. These assets can be used to gain access to a user's account.",
+                  "mitigation": "* Antivirus/Antimalware software to detect phishing emails.\n* User training to identify phishing emails\nDetection: \n* Monitor network traffic for unusual activity from accounts, indicating an attacker may have gained access to an account.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 4,
+                  "score": ""
+                }
+              ],
+              "threatFrequency": {
+                "spoofing": 2,
+                "repudiation": 1
+              }
             }
           },
           {
@@ -499,8 +700,8 @@
             },
             "visible": true,
             "shape": "store",
-            "id": "c072e522-2697-4d5f-b85c-ea22088a119b",
             "zIndex": 12,
+            "id": "c072e522-2697-4d5f-b85c-ea22088a119b",
             "data": {
               "type": "tm.Store",
               "name": "Dog Tag Datastore",
@@ -537,6 +738,7 @@
             },
             "visible": true,
             "shape": "process",
+            "zIndex": 13,
             "id": "6c18b661-c923-4bd2-8ca3-52ae8c7b2498",
             "data": {
               "type": "tm.Process",
@@ -550,8 +752,7 @@
               "isWebApplication": false,
               "privilegeLevel": "",
               "threats": []
-            },
-            "zIndex": 13
+            }
           },
           {
             "position": {
@@ -577,8 +778,8 @@
             },
             "visible": true,
             "shape": "store",
-            "id": "f749f1e2-67d7-4ff0-a8be-58a7f6b86a83",
             "zIndex": 14,
+            "id": "f749f1e2-67d7-4ff0-a8be-58a7f6b86a83",
             "data": {
               "type": "tm.Store",
               "name": "Invoice Datastore",
@@ -596,8 +797,8 @@
           },
           {
             "position": {
-              "x": 592,
-              "y": 441
+              "x": 570,
+              "y": 450
             },
             "size": {
               "width": 160,
@@ -615,6 +816,7 @@
             },
             "visible": true,
             "shape": "process",
+            "zIndex": 15,
             "id": "87f2a9c0-15d3-4c71-b9ce-0ed616911a2c",
             "data": {
               "type": "tm.Process",
@@ -628,8 +830,65 @@
               "isWebApplication": false,
               "privilegeLevel": "",
               "threats": []
+            }
+          },
+          {
+            "position": {
+              "x": 457.5,
+              "y": 10
             },
-            "zIndex": 15
+            "size": {
+              "width": 112.5,
+              "height": 60
+            },
+            "attrs": {
+              "text": {
+                "text": "On Premise\nSecure Infrastructure"
+              }
+            },
+            "visible": true,
+            "shape": "td-text-block",
+            "id": "53490d86-6b4d-4dcd-adca-02acb06526bd",
+            "zIndex": 16,
+            "data": {
+              "type": "tm.Text",
+              "name": "On Premise\nSecure Infrastructure",
+              "hasOpenThreats": false
+            }
+          },
+          {
+            "position": {
+              "x": 210,
+              "y": 140
+            },
+            "size": {
+              "width": 112.5,
+              "height": 60
+            },
+            "attrs": {
+              "text": {
+                "text": "Admin/Council \nStaff"
+              },
+              "body": {
+                "stroke": "#333333",
+                "strokeWidth": 1.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "actor",
+            "id": "29bacdf9-0f99-43f0-b10d-5a27e7e3ca6d",
+            "zIndex": 17,
+            "data": {
+              "type": "tm.Actor",
+              "name": "Admin/Council \nStaff",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "providesAuthentication": false,
+              "threats": []
+            }
           }
         ]
       },
@@ -645,6 +904,6 @@
     ],
     "diagramTop": 2,
     "reviewer": "",
-    "threatTop": 0
+    "threatTop": 4
   }
 }
