@@ -39,7 +39,21 @@
               "isTrustBoundary": false,
               "outOfScope": false,
               "reasonOutOfScope": "",
-              "threats": [],
+              "threats": [
+                {
+                  "id": "bf829383-7d0f-4c17-b1dd-0af263957240",
+                  "title": "Repudiation of order",
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "type": "Repudiation",
+                  "description": "Dog owner could register dog impersonating another owner",
+                  "mitigation": "* Unique session ID is passed in http-only cookies\n* Force Secure flag in cookie\n* Log session ID on the server-side to ensure traceability and uniqueness of originating client.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 111,
+                  "score": ""
+                }
+              ],
               "hasOpenThreats": false,
               "providesAuthentication": false
             }
@@ -113,6 +127,19 @@
                   "new": false,
                   "number": 104,
                   "score": ""
+                },
+                {
+                  "id": "f85c2398-c920-4249-a3c6-d3acd1790e91",
+                  "title": "Register dog pretending to be other",
+                  "status": "NotApplicable",
+                  "severity": "Medium",
+                  "type": "Spoofing",
+                  "description": "A register dog request comes from a malicious user (impersonating another person).",
+                  "mitigation": "Cannot mitigate without sign ins",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 127,
+                  "score": ""
                 }
               ],
               "hasOpenThreats": false,
@@ -134,8 +161,8 @@
                 "text": "Invoice\nGeneration"
               },
               "body": {
-                "stroke": "#333333",
-                "strokeWidth": 1.5,
+                "stroke": "red",
+                "strokeWidth": 2.5,
                 "strokeDasharray": null
               }
             },
@@ -150,8 +177,76 @@
               "isTrustBoundary": false,
               "outOfScope": false,
               "reasonOutOfScope": "",
-              "threats": [],
-              "hasOpenThreats": false
+              "threats": [
+                {
+                  "id": "74b767c3-9148-4e55-8e42-81cb3bada04b",
+                  "title": "Malicious attacker sends invoice",
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "type": "Spoofing",
+                  "description": "A malicious attacker sends invoice to owner",
+                  "mitigation": "Use digital signatures or other cryptographic methods to verify the authenticity of invoices.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 114,
+                  "score": ""
+                },
+                {
+                  "id": "a075c54b-342f-4eeb-8e36-e9b890995312",
+                  "title": "Adversary-in-the-middle modifies invoice",
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "type": "Tampering",
+                  "description": "An adversary-in-the-middle modifies the invoice to deceive the end-user.",
+                  "mitigation": "Add checksum to invoice",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 115,
+                  "score": ""
+                },
+                {
+                  "id": "8757d64c-24c9-4873-92d6-a0861913d7ea",
+                  "title": "Dog owner denies receiving invoice",
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "type": "Repudiation",
+                  "description": "A dog owner could deny having received the invoice",
+                  "mitigation": "Maintain detailed logs of invoice generation and delivery, and provide digital receipts.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 116,
+                  "score": ""
+                },
+                {
+                  "id": "426b977c-a023-4b4c-84bc-211928501b33",
+                  "title": "Invoice disclosure",
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "type": "Information disclosure",
+                  "description": "An attacker could intercept the invoice during transmission",
+                  "mitigation": "Encrypt invoices during transmission to protect sensitive data.\n",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 117,
+                  "score": ""
+                },
+                {
+                  "id": "d6f9b985-f304-46a5-b2cb-88287b73e41a",
+                  "title": "New STRIDE threat",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Denial of service",
+                  "description": "An attacker could prevent the invoice from reaching the dog owner",
+                  "mitigation": "Use rate limiting and monitoring to detect and mitigate potential DoS attack",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 118,
+                  "score": ""
+                }
+              ],
+              "hasOpenThreats": true,
+              "isWebApplication": null,
+              "handlesCardPayment": null
             }
           },
           {
@@ -320,7 +415,12 @@
             "target": {
               "cell": "469f4ccf-3fb5-477f-901f-54bd475d62b2"
             },
-            "vertices": []
+            "vertices": [
+              {
+                "x": -40,
+                "y": 360
+              }
+            ]
           },
           {
             "shape": "flow",
@@ -456,68 +556,12 @@
               "isEncrypted": false,
               "isPublicNetwork": false,
               "protocol": "",
-              "threats": [],
-              "isTrustBoundary": false
-            },
-            "id": "3b24a6d4-a4b9-4fe6-a5e9-95bd063588a1",
-            "labels": [
-              {
-                "position": {
-                  "distance": 0.5307598304365477,
-                  "offset": -1.676339157570621
-                },
-                "attrs": {
-                  "label": {
-                    "text": "Invoice Data"
-                  }
-                }
-              }
-            ],
-            "source": {
-              "cell": "469f4ccf-3fb5-477f-901f-54bd475d62b2"
-            },
-            "target": {
-              "cell": "c6a80e75-b462-4269-b296-95a35c8a49a4"
-            },
-            "vertices": [
-              {
-                "x": -110,
-                "y": 150
-              }
-            ]
-          },
-          {
-            "shape": "flow",
-            "attrs": {
-              "line": {
-                "stroke": "#333333",
-                "targetMarker": {
-                  "name": "block"
-                },
-                "sourceMarker": {
-                  "name": ""
-                },
-                "strokeDasharray": null
-              }
-            },
-            "width": 200,
-            "height": 100,
-            "zIndex": 10,
-            "connector": "smooth",
-            "data": {
-              "type": "tm.Flow",
-              "name": "Invoice Data",
-              "description": "Invoice data includes:\n- Amount payable\n- Bank information\n- Registration number",
-              "outOfScope": false,
-              "reasonOutOfScope": "",
-              "hasOpenThreats": false,
-              "isBidirectional": false,
-              "isEncrypted": false,
-              "isPublicNetwork": false,
-              "protocol": "",
               "threats": []
             },
             "id": "306f16bf-1111-47c2-8cd0-9ae71efe4e86",
+            "labels": [
+              "Invoice Data"
+            ],
             "source": {
               "cell": "469f4ccf-3fb5-477f-901f-54bd475d62b2"
             },
@@ -533,9 +577,6 @@
                 "x": 410,
                 "y": 350
               }
-            ],
-            "labels": [
-              "Invoice Data"
             ]
           },
           {
@@ -686,6 +727,9 @@
               ]
             },
             "id": "5937a924-b1f9-49da-ad45-97c0046a1f93",
+            "labels": [
+              "Registration Details"
+            ],
             "source": {
               "cell": "f0b5788b-68cf-4393-89ff-b06483e4f64e"
             },
@@ -709,9 +753,6 @@
                 "x": -10,
                 "y": 80
               }
-            ],
-            "labels": [
-              "Registration Details"
             ]
           },
           {
@@ -792,8 +833,115 @@
             },
             "vertices": [
               {
+                "x": -50,
+                "y": 130
+              },
+              {
+                "x": -30,
+                "y": 150
+              },
+              {
                 "x": -10,
                 "y": 180
+              }
+            ]
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "Invoice Data",
+              "description": "Invoice data includes:\n- Amount payable\n- Bank information\n- Registration number",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": [
+                {
+                  "id": "d90722cb-39d3-4238-a978-37c375c84e5c",
+                  "title": "Invoice Tampering",
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "type": "Tampering",
+                  "description": "Invoice can be modified by an adversary in the middle. ",
+                  "mitigation": "Transmit invoices over secure channels (e.g., HTTPS) and use integrity checks.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 122,
+                  "score": ""
+                },
+                {
+                  "id": "3d996025-63c1-4643-9693-a860b5cec165",
+                  "title": "Invoice disclosure",
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "type": "Information disclosure",
+                  "description": " An attacker could intercept invoice details during transmission.",
+                  "mitigation": " Encrypt invoices during transmission to protect sensitive data.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 123,
+                  "score": ""
+                },
+                {
+                  "id": "1c562d96-6767-404a-b32d-38d2910e287c",
+                  "title": "Attacker DOS Invoice",
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "type": "Denial of service",
+                  "description": "Attacker floods network with traffic to prevent invoice delivery",
+                  "mitigation": "Use rate limiting and monitoring to detect and mitigate potential DoS attacks.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 124,
+                  "score": ""
+                }
+              ],
+              "isTrustBoundary": false
+            },
+            "id": "3b24a6d4-a4b9-4fe6-a5e9-95bd063588a1",
+            "labels": [
+              {
+                "position": {
+                  "distance": 0.5307598304365477,
+                  "offset": -1.676339157570621
+                },
+                "attrs": {
+                  "label": {
+                    "text": "Invoice Data"
+                  }
+                }
+              }
+            ],
+            "source": {
+              "cell": "469f4ccf-3fb5-477f-901f-54bd475d62b2"
+            },
+            "target": {
+              "cell": "c6a80e75-b462-4269-b296-95a35c8a49a4"
+            },
+            "vertices": [
+              {
+                "x": -110,
+                "y": 150
               }
             ]
           },
@@ -821,8 +969,8 @@
             },
             "visible": true,
             "shape": "store",
-            "id": "dd083fb3-3814-427e-846b-0d3f8c06133e",
             "zIndex": 25,
+            "id": "dd083fb3-3814-427e-846b-0d3f8c06133e",
             "data": {
               "type": "tm.Store",
               "name": "Invoice Datastore",
@@ -847,7 +995,7 @@
       }
     ],
     "diagramTop": 13,
-    "threatTop": 108
+    "threatTop": 127
   },
   "version": "2.2.0"
 }
